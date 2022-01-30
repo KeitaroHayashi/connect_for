@@ -59,16 +59,16 @@ class Board:
 
 
     def check_winner_horizontal(self, pos):
-        # start_pos = pos - (pos % COL_NUM)
-        # end_pos = start_pos + COL_NUM - 1
-        #
-        # for i in range(start_pos, end_pos):
-        #     if i + COL_NUM - 1 > end_pos:
-        #         break
-        #     if self.board[i] == self.board[i + 1] == self.board[i + 2] == self.board[i + 3]:
-        #         if self.board[i] != EMPTY:
-        #             self.winner = self.board[i]
-        #             return self.winner
+        start_pos = pos - (pos % COL_NUM)
+        end_pos = start_pos + COL_NUM - 1
+
+        for i in range(start_pos, end_pos):
+            if i + COL_NUM - 1 > end_pos:
+                break
+            if self.board[i] == self.board[i + 1] == self.board[i + 2] == self.board[i + 3]:
+                if self.board[i] != EMPTY:
+                    self.winner = self.board[i]
+                    return self.winner
 
         # ②
         # for i in range(ALL_POS_COUNT - 4):
@@ -79,8 +79,8 @@ class Board:
         #                 return self.winner
 
         # ①
-        rows = list(chunked(self.board, COL_NUM))
-        self.check_connected(rows)
+        # rows = list(chunked(self.board, COL_NUM))
+        # self.check_connected(rows)
 
 
     def check_winner_vertical(self):
@@ -110,7 +110,6 @@ class Board:
                     count += 1
                     if count == 4:
                         self.winner = player
-                        return self.winner
                 else:
                     count = 1
 
